@@ -1,113 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Your Flight ✈️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <h1>✈️ Book Your Flight</h1>
-        <form id="flightForm">
-            <!-- Personal Information -->
-            <label for="stateId">✈️ State Identification Number:</label>
-            <input type="text" id="stateId" name="stateId" required>
-            <div class="form-error" id="stateIdError"></div>
+/* General Styles */
+body {
+    font-family: 'Quicksand', sans-serif;
+    background: linear-gradient(to bottom right, #ffc1e3, #ff9fdc);
+    margin: 0;
+    padding: 0;
+}
 
-            <label for="firstName">✈️ First Name:</label>
-            <input type="text" id="firstName" name="firstName" required>
-            <div class="form-error" id="firstNameError"></div>
+.container {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    text-align: center;
+}
 
-            <label for="lastName">✈️ Last Name:</label>
-            <input type="text" id="lastName" name="lastName" required>
-            <div class="form-error" id="lastNameError"></div>
+h1, h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 28px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
 
-            <label for="birthDate">✈️ Birth Date:</label>
-            <input type="date" id="birthDate" name="birthDate" required>
-            <div class="form-error" id="birthDateError"></div>
+label {
+    font-weight: bold;
+    color: #444;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
 
-            <label for="email">✈️ Email:</label>
-            <input type="email" id="email" name="email" required>
-            <div class="form-error" id="emailError"></div>
+input, select {
+    width: 80%;
+    padding: 12px;
+    margin-top: 8px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    outline: none;
+    transition: 0.3s;
+}
 
-            <label for="phoneNumber">✈️ Phone Number:</label>
-            <input type="text" id="phoneNumber" name="phoneNumber" required>
-            <div class="form-error" id="phoneError"></div>
+input:focus, select:focus {
+    border-color: #ff6fb5;
+    box-shadow: 0 0 8px #ff6fb5;
+}
 
-            <label for="passportNumber">✈️ Passport Number (Only for International Flights):</label>
-            <input type="text" id="passportNumber" name="passportNumber">
-            <small class="info-text">This field is optional unless traveling internationally.</small>
+button {
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background-color: #ff6fb5;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s, transform 0.2s;
+}
 
-            <!-- Flight Details -->
-            <label for="fromLocation">✈️ Where are you flying from?</label>
-            <input type="text" id="fromLocation" name="fromLocation" required>
-            <div class="form-error" id="fromLocationError"></div>
+button:hover {
+    background-color: #ff89c0;
+    transform: scale(1.05);
+}
 
-            <label for="fromState">✈️ Departure State:</label>
-            <select id="fromState" name="fromState" required>
-                <option value="">Select State</option>
-                <option value="CA">California</option>
-                <option value="NY">New York</option>
-                <option value="TX">Texas</option>
-                <option value="FL">Florida</option>
-                <option value="IL">Illinois</option>
-                <!-- Add more states as needed -->
-            </select>
-            <div class="form-error" id="fromStateError"></div>
+.info-text {
+    font-size: 14px;
+    color: #888;
+}
 
-            <label for="toLocation">✈️ Where are you flying to?</label>
-            <input type="text" id="toLocation" name="toLocation" required>
-            <div class="form-error" id="toLocationError"></div>
+.hidden {
+    display: none;
+}
 
-            <label for="toState">✈️ Arrival State:</label>
-            <select id="toState" name="toState" required>
-                <option value="">Select State</option>
-                <option value="CA">California</option>
-                <option value="NY">New York</option>
-                <option value="TX">Texas</option>
-                <option value="FL">Florida</option>
-                <option value="IL">Illinois</option>
-                <!-- Add more states as needed -->
-            </select>
-            <div class="form-error" id="toStateError"></div>
+/* Estimated Price Display */
+#estimatedPriceDisplay {
+    font-size: 18px;
+    color: #ff6fb5;
+    margin-top: 10px;
+    font-weight: bold;
+}
 
-            <label for="preferredDays">✈️ Preferred Flying Days:</label>
-            <select id="preferredDays" name="preferredDays" required>
-                <option value="">Select</option>
-                <option value="Weekdays">Weekdays</option>
-                <option value="Weekends">Weekends</option>
-                <option value="Any day">Any day</option>
-            </select>
-            <div class="form-error" id="preferredDaysError"></div>
 
-            <!-- Estimated Price Display -->
-            <p id="estimatedPriceDisplay" class="hidden">
-                <strong>✈️ Estimated Price for Your Flight:</strong> $<span id="estimatedPrice"></span>
-            </p>
-
-            <button type="button" id="confirmButton">Confirm Flight Details</button>
-        </form>
-
-        <!-- Confirmation Section -->
-        <div id="confirmationMessage" class="hidden">
-            <h2>✈️ Confirm Your Flight Details</h2>
-            <p><strong>From:</strong> <span id="confirmFrom"></span>, <span id="confirmFromState"></span></p>
-            <p><strong>To:</strong> <span id="confirmTo"></span>, <span id="confirmToState"></span></p>
-            <p><strong>Preferred Days:</strong> <span id="confirmDays"></span></p>
-            <p><strong>Estimated Price:</strong> $<span id="confirmPrice"></span></p>
-            <button id="submitButton">Book Flight</button>
-        </div>
-
-        <!-- Thank You Message -->
-        <div id="thankYouMessage" class="hidden">
-            <h2>Thank You for Booking with Airema Flight Company ✈️</h2>
-            <p>Your flight details have been successfully processed. Have a safe and pleasant journey!</p>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
 
