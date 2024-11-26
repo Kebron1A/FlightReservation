@@ -16,18 +16,18 @@ document.getElementById("toLocation").addEventListener("input", function () {
 document.getElementById("confirmButton").addEventListener("click", function () {
     const birthDateValue = document.getElementById("birthDate").value;
     const fromLocation = document.getElementById("fromLocation").value.trim();
-    const fromState = document.getElementById("fromState").value;
+    const fromState = document.getElementById("fromState").value.trim();
     const toLocation = document.getElementById("toLocation").value.trim();
-    const toState = document.getElementById("toState").value;
+    const toState = document.getElementById("toState").value.trim();
     const preferredDays = document.getElementById("preferredDays").value;
 
-    // Ensure states are selected
+    // Ensure states are provided
     if (!fromState) {
-        alert("Please select a departure state.");
+        alert("Please enter the departure state.");
         return;
     }
     if (!toState) {
-        alert("Please select an arrival state.");
+        alert("Please enter the arrival state.");
         return;
     }
 
@@ -53,8 +53,9 @@ document.getElementById("confirmButton").addEventListener("click", function () {
         document.getElementById("confirmDays").textContent = preferredDays;
         document.getElementById("confirmPrice").textContent = document.getElementById("estimatedPrice").textContent;
 
-        document.getElementById("flightForm").classList.remove("active");
-        document.getElementById("confirmationMessage").classList.add("active");
+        // Show confirmation message
+        document.getElementById("flightForm").classList.add("hidden");
+        document.getElementById("confirmationMessage").classList.remove("hidden");
     } else {
         alert("Please fill out all required fields!");
     }
@@ -62,6 +63,7 @@ document.getElementById("confirmButton").addEventListener("click", function () {
 
 // Display thank-you message after confirmation
 document.getElementById("submitButton").addEventListener("click", function () {
-    document.getElementById("confirmationMessage").classList.remove("active");
-    document.getElementById("thankYouMessage").classList.add("active");
+    // Hide confirmation and show thank-you message
+    document.getElementById("confirmationMessage").classList.add("hidden");
+    document.getElementById("thankYouMessage").classList.remove("hidden");
 });
