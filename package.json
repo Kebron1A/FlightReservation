@@ -1,26 +1,17 @@
 {
-  "name": "FlightReservation",
+  "name": "flight-booking-server",
   "version": "1.0.0",
-  "description": "this is a nw app for todo list",
-  "main": "public/index.html",
-  "node-main": "index.js",
+  "description": "Server for flight booking website",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
-  "window": {
-    "title": "TodoList",
-    "icon": "assets/icon.jpg",
-    "toolbar": true,
-    "width": 1000,
-    "height": 1000,
-    "position": "center"
-  },
-  "author": "",
+  "author": "Prayusha and Kebron",
   "license": "ISC",
   "dependencies": {
-    "bluebird": "^3.7.2",
+    "body-parser": "^1.20.2",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "mysql2": "^3.11.4"
+    "express": "^4.18.2",
+    "mysql": "^2.18.1"
   }
 }
